@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  
+  <!-- iOS / Web App Capable Metadata -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Cow!">
+  
+  <title>Cow! - Rural Road Trip Game</title>
+  
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <span class="logo-icon">🐮</span>
+      <h1>Cow!</h1>
+    </div>
+    <div class="header-actions">
+      <button id="rulesBtn" class="icon-btn" aria-label="Rules">📜 Rules</button>
+      <button id="resetGameBtn" class="icon-btn danger-btn" aria-label="New Game">🔄 Reset</button>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- Player Setup Screen -->
+    <section id="setupScreen" class="card setup-card">
+      <h2>🚗 Road Trip Setup</h2>
+      <p class="subtitle">Select player count (2 to 5 drivers/passengers)</p>
+
+      <div class="player-count-selector">
+        <label>Number of Players:</label>
+        <div class="btn-group" id="playerCountGroup">
+          <button class="count-btn" data-count="2">2</button>
+          <button class="count-btn active" data-count="3">3</button>
+          <button class="count-btn" data-count="4">4</button>
+          <button class="count-btn" data-count="5">5</button>
+        </div>
+      </div>
+
+      <div id="playerInputsContainer" class="player-inputs">
+        <!-- JS populates player input fields here -->
+      </div>
+
+      <button id="startGameBtn" class="btn primary-btn large-btn">Start Driving! 🚘</button>
+    </section>
+
+    <!-- Active Game Dashboard -->
+    <section id="gameScreen" class="game-screen hidden">
+      
+      <!-- Active Players Cards Container -->
+      <div id="playersGrid" class="players-grid">
+        <!-- Rendered by JS dynamically -->
+      </div>
+
+      <!-- Action Log & Undo Section -->
+      <section class="card log-card">
+        <div class="log-header">
+          <h3>📋 Trip Log</h3>
+          <button id="undoBtn" class="btn secondary-btn small-btn" disabled>↩️ Undo Last</button>
+        </div>
+        <ul id="actionLog" class="action-log-list">
+          <li class="empty-log">Game started! Keep an eye out on the road.</li>
+        </ul>
+      </section>
+
+    </section>
+
+  </main>
+
+  <!-- Rules & House Scoring Modal -->
+  <div id="rulesModal" class="modal-overlay hidden">
+    <div class="modal-content card">
+      <div class="modal-header">
+        <h2>🐮 House Rules & Scoring</h2>
+        <button id="closeRulesBtn" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul class="rules-list">
+          <li><strong>+1 Cow:</strong> Spotting individual cows (+1 point to Herd).</li>
+          <li><strong>+20 Big Herd:</strong> Too many cows to count individually (+20 points to Herd).</li>
+          <li><strong>🪅 Exotic Animal (+15):</strong> Spotting camels, llamas, alpacas, or ostriches (+15 points to Herd).</li>
+          <li><strong>🌊/🪦 Drown Opponent:</strong> Spotting a Dam or Cemetery allows you to drown all UNBANKED cows in an opponent's herd back to 0!</li>
+          <li><strong>🏡 Cattle Yard:</strong> Bank 20 cows from your unbanked herd safely into total score.</li>
+          <li><strong>🚛 Cattle Truck:</strong> Bank your ENTIRE unbanked herd safely into your total score!</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Attack Target Selection Modal -->
+  <div id="attackModal" class="modal-overlay hidden">
+    <div class="modal-content card attack-card">
+      <div class="modal-header">
+        <h2 id="attackTitle">🌊 Drown Unbanked Cows!</h2>
+        <button id="closeAttackBtn" class="close-btn">&times;</button>
+      </div>
+      <p id="attackSubtitle">Select an opponent whose herd you spotted in a dam/cemetery:</p>
+      <div id="attackTargets" class="attack-targets-list">
+        <!-- JS inserts target buttons here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
