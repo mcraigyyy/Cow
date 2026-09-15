@@ -1,0 +1,9 @@
+{
+  "name": "Cow! Road Trip Game",
+  "short_name": "Cow!",
+  "description": "Offline rural road trip scorekeeper app for the Cow car game.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#16a34a",
+  "theme_color": "#16a34a"
+}
